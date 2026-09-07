@@ -1,1 +1,527 @@
+/* =========================================================
+   Projet Serena — feuille de style
+   Sommaire :
+   1. Polices & variables
+   2. Reset de base
+   3. Typographie
+   4. Mise en page générale (header / footer / conteneurs)
+   5. Composants (boutons, listes, formulaire, citation…)
+   6. Page d'accueil (hero, sections spécifiques)
+   7. Pages secondaires (infos, tarifs, contact)
+   8. Responsive
+   ========================================================= */
 
+/* 1. Polices & variables ---------------------------------- */
+
+:root {
+  --bg: #F2F4EC;            /* fond principal : ivoire sauge */
+  --bg-alt: #E8DDCB;        /* fond alterné : sable chaud */
+  --bg-deep: #33452F;       /* fond foncé : bandeaux de contraste */
+  --ink: #202B22;           /* texte principal : encre forêt */
+  --ink-soft: #4B5A4E;      /* texte secondaire */
+  --accent: #57735C;        /* vert sauge : liens, accents */
+  --accent-dark: #3C5240;
+  --gold: #A9822F;          /* ocre discret : boutons, mise en valeur */
+  --white: #FDFCF8;
+  --line: rgba(32, 43, 34, 0.14);
+  --line-soft: rgba(32, 43, 34, 0.08);
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Karla", "Segoe UI", sans-serif;
+
+  --container-w: 1120px;
+}
+
+/* 2. Reset de base ------------------------------------------ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+ul { margin: 0; padding: 0; list-style: none; }
+
+button { font-family: inherit; cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* 3. Typographie --------------------------------------------- */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.15;
+  margin: 0;
+}
+
+h1 { font-size: clamp(2.4rem, 4.2vw, 3.6rem); font-weight: 500; }
+h2 { font-size: clamp(1.7rem, 2.8vw, 2.3rem); }
+h3 { font-size: 1.25rem; font-weight: 600; }
+
+p { margin: 0 0 1em; max-width: 62ch; }
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--accent-dark);
+  margin-bottom: 0.6em;
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  max-width: 56ch;
+}
+
+/* 4. Mise en page générale ------------------------------------ */
+
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(242, 244, 236, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 20px 32px;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 36px;
+}
+
+.main-nav a {
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+  padding: 6px 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.main-nav a:hover,
+.main-nav a[aria-current="page"] {
+  color: var(--accent-dark);
+  border-bottom-color: var(--accent-dark);
+}
+
+main { display: block; }
+
+section { padding: 88px 0; }
+
+.section-alt { background: var(--bg-alt); }
+
+.section-deep {
+  background: var(--bg-deep);
+  color: var(--white);
+}
+
+.section-deep h2, .section-deep p { color: var(--white); }
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.site-footer {
+  background: var(--bg-deep);
+  color: rgba(253, 252, 248, 0.85);
+  padding: 56px 0 28px;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(253, 252, 248, 0.16);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.footer-tagline {
+  color: rgba(253, 252, 248, 0.65);
+  font-size: 0.95rem;
+  max-width: 32ch;
+}
+
+.footer-nav ul { display: flex; gap: 28px; flex-wrap: wrap; }
+
+.footer-nav a { font-size: 0.95rem; color: rgba(253, 252, 248, 0.8); }
+.footer-nav a:hover { color: var(--white); }
+
+.footer-contact p { color: rgba(253, 252, 248, 0.8); font-size: 0.95rem; margin: 0 0 6px; }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 22px;
+  font-size: 0.85rem;
+  color: rgba(253, 252, 248, 0.55);
+}
+
+/* 5. Composants ------------------------------------------------ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 3px;
+  font-size: 0.98rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  background: var(--accent-dark);
+  color: var(--white);
+}
+
+.btn-primary:hover { background: var(--ink); }
+
+.btn-ghost {
+  border-color: currentColor;
+  color: var(--ink);
+}
+
+.btn-ghost:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+
+.btn-on-dark {
+  background: var(--white);
+  color: var(--bg-deep);
+}
+
+.btn-on-dark:hover { background: var(--bg-alt); }
+
+.tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+
+.tag-row span {
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.icon-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.icon-item {
+  display: flex;
+  gap: 18px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.icon-item:nth-child(1), .icon-item:nth-child(2) { border-top: 1px solid var(--line); }
+
+.icon-item .icon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  color: var(--accent-dark);
+}
+
+.icon-item h3 { margin-bottom: 6px; }
+.icon-item p { color: var(--ink-soft); margin: 0; font-size: 0.97rem; }
+
+.columns-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.columns-3 .col-mark {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+.columns-3 p { color: var(--ink-soft); font-size: 0.97rem; }
+
+blockquote.quote {
+  margin: 0 auto;
+  max-width: 680px;
+  text-align: center;
+}
+
+blockquote.quote p {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+  color: var(--ink);
+  max-width: none;
+  line-height: 1.4;
+}
+
+blockquote.quote cite {
+  display: block;
+  margin-top: 20px;
+  font-style: normal;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.cta-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.cta-band h2 { max-width: 20ch; }
+
+/* Formulaire (utilisé sur info.html) */
+
+.form-field {
+  margin-bottom: 22px;
+}
+
+.form-field label {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 13px 14px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.form-field textarea { resize: vertical; min-height: 140px; }
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: var(--accent-dark);
+}
+
+.form-note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: -6px;
+}
+
+/* Tableau d'infos pratiques */
+
+.info-table {
+  border-top: 1px solid var(--line);
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.info-row dt {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--accent-dark);
+}
+
+.info-row dd { margin: 0; color: var(--ink-soft); }
+
+/* Tarifs */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.price-card {
+  border: 1px solid var(--line);
+  padding: 36px 30px;
+  background: var(--white);
+}
+
+.price-card.is-featured {
+  background: var(--bg-deep);
+  border-color: var(--bg-deep);
+  color: var(--white);
+}
+
+.price-card.is-featured p,
+.price-card.is-featured .price-value { color: var(--white); }
+
+.price-name {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+
+.price-card.is-featured .price-name { color: rgba(253, 252, 248, 0.7); }
+
+.price-value {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+
+.price-card ul { margin-bottom: 28px; }
+
+.price-card li {
+  padding: 9px 0;
+  border-top: 1px solid var(--line-soft);
+  font-size: 0.93rem;
+  color: var(--ink-soft);
+}
+
+.price-card.is-featured li {
+  border-top-color: rgba(253, 252, 248, 0.18);
+  color: rgba(253, 252, 248, 0.85);
+}
+
+/* Bandeau de page simple (info / tarifs / contact) */
+
+.page-hero {
+  padding: 64px 0 20px;
+}
+
+.page-hero h1 { max-width: 18ch; }
+
+/* 6. Page d'accueil : hero -------------------------------------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 48px;
+  padding: 72px 0 96px;
+}
+
+.hero-copy p.lede { margin: 22px 0 34px; }
+
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.breath-mark circle {
+  fill: none;
+  stroke-width: 1.4;
+}
+
+/* 7. Pages secondaires -------------------------------------------- */
+
+.contact-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.contact-details h3 { margin-bottom: 10px; }
+.contact-details p { color: var(--ink-soft); }
+
+/* 8. Responsive ------------------------------------------------------ */
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; gap: 40px; }
+  .hero-visual { order: -1; max-width: 260px; margin: 0 auto; }
+  .icon-list { grid-template-columns: 1fr; }
+  .columns-3 { grid-template-columns: 1fr; gap: 32px; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .contact-details { grid-template-columns: 1fr; }
+  .info-row { grid-template-columns: 1fr; gap: 6px; }
+  section { padding: 64px 0; }
+}
+
+@media (max-width: 600px) {
+  .header-inner { padding: 16px 20px; }
+  .main-nav ul { gap: 20px; }
+  .container { padding: 0 20px; }
+  .cta-band { text-align: center; justify-content: center; }
+  .footer-top, .footer-bottom { flex-direction: column; }
+}
